@@ -1,0 +1,348 @@
+PARSER_BEGIN(compi)
+package Lexico;
+public class compi
+{
+ 
+}
+PARSER_END(compi)
+
+SKIP : { " " }
+SKIP : { "\n" | "\r" | "\r\n" | "\t" }
+
+TOKEN : {
+  <OPARITMETICO:"+" | "-" | "*" | "/" | "%" | "^">{System.out.println("OPARITMETICO -> " +image);}
+}
+
+TOKEN : {
+  <OPRELACIONAL: ">" | "<" | ">=" | "<=" | "==" | "!=" | "is" | "as">{System.out.println("OPRELACIONAL -> " +image);}
+}
+
+TOKEN : {
+  <OPLOGICO: "&&" | "||" | "!" | "and" | "or" | "not">{System.out.println("OPLOGICO -> " +image);}
+}
+
+TOKEN : {
+  <ASIGNACION: "=" | "+=" | "-=" | "*=" | "/=" | "%=" | "^=" | "&=" | "|=" | "<<=" | ">>=" > {System.out.println("ASIGNACION -> " +image);}
+}
+
+TOKEN : { 
+  <INCREMENTO: "++" >{System.out.println("INCREMENTO");}
+  | <DECREMENTO: "--" >{System.out.println("DECREMENTO");}
+}
+
+TOKEN : { 
+  <COMPBITS: "~" >{System.out.println("COMPBITS");}
+} 
+TOKEN : { 
+  <OPTERNARIO: "?:" >{System.out.println("OPTERNARIO");}
+  }
+TOKEN : { <APUNTADOR: "->" | "=>"> {System.out.println("APUNTADOR");}}
+TOKEN : { <OPFUSIONNULA: "??"> {System.out.println("OPFUSIONNULA");}}
+TOKEN : { <LAMBDA: "lambda">{System.out.println("LAMBDA -> " +image);} }
+TOKEN : {
+  <PARIZQ: "(" >{System.out.println("PARIZQ");}
+  |<PARDER: ")">{System.out.println("PARDER");}
+  |<LLAVEIZQ: "{">{System.out.println("LLAVEIZQ");}
+  |<LLAVEDER: "}"> {System.out.println("LLAVEDER");}
+  |<CORIZQ: "["> {System.out.println("CORIZQ");}
+  |<CORDER: "]"> {System.out.println("CORDER");}
+}
+TOKEN : { <PUNTOS: "." | "," | ":"> {System.out.println("PUNTOS");}}
+TOKEN : { <FINLINEA: ";"> {System.out.println("FINLINEA");}}
+TOKEN : { <COMILLAS: "("")" | "('')"> {System.out.println("COMILLAS");}}
+TOKEN : { <COMENTARIO: "#"> {System.out.println("COMENTARIO");}}
+TOKEN : { <IF: "if"> {System.out.println("IF");}}
+TOKEN : { <SINO: "else">{System.out.println("SINO");}}
+TOKEN : { <ELSIF: "elsif"> {System.out.println("ELSIF");}}
+TOKEN : { <SWITCH: "switch">{System.out.println("SWITCH");}}
+TOKEN : { <CASE: "case"> {System.out.println("CASE");}}
+TOKEN : { <FINCASE: "break"> {System.out.println("FINCASE");}}
+TOKEN : { <CICLO: "while" | "for" | "foreach" | "do" > {System.out.println("CICLO -> " +image);}}
+TOKEN : { <NUMERO: (["0"-"9"])+> {System.out.println("NUMERO -> " +image);}}
+TOKEN : { 
+  <TIPODATO : "strg" | "num" | "flt" | "const" | "dobl" | "bool" | "byte" | "shrt" | "char" | "decim" | "enum" | "struct" | "date" | "datetime" >{System.out.println("TIPODATO -> " +image);}
+  }
+TOKEN : { <NULO: "null"> {System.out.println("NULO");}}
+TOKEN : { <VALOR_BOOLEANO: "true" | "false"> {System.out.println("VALOR_BOOLEANO");}}
+TOKEN : { <FUNCION: "func"> {System.out.println("FUNCION");}}
+TOKEN : { <CLASE: "class"> {System.out.println("CLASE");}}
+TOKEN : { <VALOR_OBJETO: "object"> {System.out.println("VALOR_OBJETO");}}
+TOKEN : { <TIPO_INTERFAZ: "interface"> {System.out.println("TIPO_INTERFAZ");}}
+TOKEN : { <TIPO_DELEGADO: "del"> {System.out.println("TIPO_DELEGADO");}}
+TOKEN : { <GLOBAL: "global"> {System.out.println("GLOBAL");}}
+TOKEN : { <IO: "in" | "out"> {System.out.println("IO ");}}
+TOKEN : { <RETORNO: "return"> {System.out.println("RETORNO");}}
+TOKEN : { <THEN: "then"> {System.out.println("THEN");}}
+TOKEN : { <ITERACION: "continue"> {System.out.println("ITERACION -> " +image);}}
+TOKEN : { <PRUEBA: "try"> {System.out.println("PRUEBA -> " +image);}}
+TOKEN : { <ATRAPADOR: "catch"> {System.out.println("ATRAPADOR -> " +image);}}
+TOKEN : { <COMPARADOR: "like"> {System.out.println("COMPARADOR -> " +image);}}
+TOKEN : { <ABRIR_ARCHIVO: "open"> {System.out.println("ABRIR_ARCHIVO -> " +image);}}
+TOKEN : { <LEER_ARCHIVO: "readfile"> {System.out.println("LEER_ARCHIVO");}}
+TOKEN : { <LEER_LINEA: "readln"> {System.out.println("LEER_LINEA");}}
+TOKEN : { <ESCRIBIR: "write"> {System.out.println("ESCRIBIR");}}
+TOKEN : { <ESCRIBIR_LINEA: "writeln"> {System.out.println("ESCRIBIR_LINEA");}}
+TOKEN : { <IMPRIMIR: "print" | "println"> {System.out.println("IMPRIMIR -> " +image);}}
+TOKEN : { <EJECUCION: "exec"> }
+TOKEN : { <ERROR_EXCEPCION: "excep"> {System.out.println("ERROR_EXCEPCION -> " +image);}}
+TOKEN : { <ERROR_BLOQUEO: "raise"> {System.out.println("ERROR_BLOQUEO -> " +image);}}
+TOKEN : { <ERROR_FINALIZACION: "finally"> {System.out.println("ERROR_FINALIZACION -> " +image);}}
+TOKEN : { <SELECTOR: "select"> {System.out.println("SELECTOR -> " +image);}}
+TOKEN : { <METODO_DESDE: "from"> {System.out.println("METODO_DESDE -> " +image);}}
+TOKEN : { <METODO_TIPO: "type"> {System.out.println("METODO_TIPO -> " +image);}}
+TOKEN : { <VALOR_DE_OBJETO: "default"> {System.out.println("VALOR_DE_OBJETO -> " +image);}}
+TOKEN : { <NUEVO: "new"> {System.out.println("NUEVO");}}
+TOKEN : { <BIBLIOTECA: "packg"> {System.out.println("BIBLIOTECA -> " +image);}}
+TOKEN : { <IMPORTAR_BIBLIOTECA: "import"> {System.out.println("IMPORTAR_BIBLIOTECA -> " +image);}}
+TOKEN : { <ABSTRACCION: "abstract"> {System.out.println("ABSTRACCION -> " +image);}}
+TOKEN : { <GET: "get"> {System.out.println("GET");}}
+TOKEN : { <SET: "set"> {System.out.println("SET");}}
+TOKEN : { <THROW: "throw"> {System.out.println("THROW -> " +image);}}
+TOKEN : { <PUNTERO: "this"> {System.out.println("PUNTERO -> " +image);}}
+TOKEN : { <MOD_ABSTRAC: "override"> {System.out.println("MOD_ABSTRAC -> " +image);}}
+TOKEN : { <SUPER: "super"> {System.out.println("SUPER -> " +image);}}
+TOKEN : { <PARAMETROS: "params"> {System.out.println("PARAMETROS -> " +image);}}
+TOKEN : { <TIPO_METODO: "private" | "protected" | "public"> {System.out.println("TIPO_METODO -> " +image);}}
+TOKEN : { <ESTATICO: "static"> {System.out.println("ESTATICO -> " +image);}}
+TOKEN : { <VALOR: "value"> {System.out.println("VALOR -> " +image);}}
+TOKEN : { <INPUT: "input"> {System.out.println("INPUT -> " +image);}}
+TOKEN : { <EVENTO: "event"> {System.out.println("EVENTO -> " +image);}}
+TOKEN : { <REFERENCIA: "ref"> {System.out.println("REFERENCIA -> " +image);}}
+TOKEN : { <COMPROBAR: "checked"> {System.out.println("COMPROBAR -> " +image);}}
+TOKEN : { <DESCOMPROBAR: "unchecked"> {System.out.println("DESCOMPROBAR -> " +image);}}
+TOKEN : { <SINCRONIZAR: "sync"> {System.out.println("SINCRONIZAR -> " +image);}}
+TOKEN : { <CORRER: "run"> {System.out.println("CORRER -> " +image);}}
+TOKEN : {<IGNORAR: "pass"> {System.out.println("IGNORAR -> " +image);}}
+TOKEN : { <START: "Start">{System.out.println("START -> " +image);} }
+TOKEN : { <REMOVE: "Remove"> {System.out.println("REMOVE -> " +image);}}
+TOKEN : { <CLEAR: "Clear">{System.out.println("CLEAR -> " +image);} }
+TOKEN : { <REVERSE: "Reverse"> {System.out.println("REVERSE -> " +image);}}
+TOKEN : { <COPIAR: "Copy"> {System.out.println("COPIAR -> " +image);}}
+TOKEN : { <MAXIMO: "Max"> {System.out.println("MAXIMO -> " +image);}}
+TOKEN : { <MINIMO: "Min"> {System.out.println("MINIMO -> " +image);}}
+TOKEN : { <SUMAR: "Sum"> {System.out.println("SUMAR -> " +image);}}
+TOKEN : { <DETENER: "Stop"> {System.out.println("DETENER -> " +image);}}
+TOKEN : { <PAUSAR: "Pause"> {System.out.println("PAUSAR -> " +image);}}
+TOKEN : { <SUSPENDER: "Sleep"> {System.out.println("SUSPENDER -> " +image);}}
+TOKEN : { <ADJUNTAR: "append"> {System.out.println("ADJUNTAR -> " +image);}}
+TOKEN : { <EXTENDER: "extend"> {System.out.println("EXTENDER -> " +image);}}
+TOKEN : { <INSERTAR: "insert"> {System.out.println("INSERTAR -> " +image);}}
+TOKEN : { <MODMATH: "Math"> {System.out.println("MODMATH -> " +image);}}
+TOKEN : { <HEIGHT: "Height">{System.out.println("HEIGHT -> " +image);}}
+TOKEN : { <WIDTH: "Width">{System.out.println("WIDTH -> " +image);}}
+TOKEN : { <LEFT: "Left">{System.out.println("LEFT -> " +image);}}
+TOKEN : { <RIGHT: "Right">{System.out.println("RIGHT -> " +image);}}
+TOKEN : { <TOP: "Top">{System.out.println("TOP -> " +image);}}
+TOKEN : { <INDICE: "Index">{System.out.println("INDICE -> " +image);}}
+TOKEN : { <METODO: "void">{System.out.println("METODO -> " +image);}}
+TOKEN : { <TAG: "Tag">{System.out.println("TAG -> " +image);}}
+TOKEN : { <BOTTOM: "Bottom">{System.out.println("BOTTOM -> " +image);}}
+TOKEN : { <CONTAR: "count"> {System.out.println("CONTAR -> " +image);}}
+TOKEN : { <ORDENAR: "sort"> {System.out.println("ORDENAR -> " +image);}}
+TOKEN : { <TIEMPO: "time"> {System.out.println("TIEMPO -> " +image);}}
+TOKEN : { <ALEATORIO: "random"> {System.out.println("ALEATORIO");}}
+TOKEN : { <CLOSE: "close"> {System.out.println("CLOSE -> " +image);}}
+TOKEN : { <BUSCAR: "seek">{System.out.println("BUSCAR -> " +image);}}
+TOKEN : { <RENOMBRAR: "rename">{System.out.println("RENOMBRAR -> " +image);}}
+TOKEN: {
+  <FUNCMAT: "pow" | "sqrt" | "cos" | "sin" | "tan" | "degrees" | "radians" | 
+    "hypot" | "ceil" | "copysign" | "fabs" | "fact" | "floor" | "fmod" | "frexp" | "fsum" | "isfinite" |
+    "isinf" | "isnan" | "idexp" | "modf"| "trunc" | "exp" | "log" | "log1" | "log2" | "log10" | "sinh" |
+    "tanh" | "cosh" | "acos" | "asin" | "atan" | "acosh" | "asinh" | "atanh" | "pi" | "e" | "gamma" | "lgamma"> {System.out.println("FUNCMAT -> " +image);}
+} 
+TOKEN : { <IDENTIFICADOR: ["a"-"z","A"-"Z","_"](["a"-"z","A"-"Z","_","0"-"9"])*> }
+
+
+void Start() : {}
+{
+  (
+    <OPARITMETICO> | <OPRELACIONAL> | <OPLOGICO> | <ASIGNACION> | <INCREMENTO>| <DECREMENTO> | <OPFUSIONNULA> | 
+    <OPTERNARIO> | <IDENTIFICADOR> | <NUMERO> | <NUEVO> | <COMPBITS> | <APUNTADOR> | <LAMBDA> | <PARIZQ> | <PARDER> |
+    <LLAVEIZQ> | <LLAVEDER> | <CORIZQ> | <CORDER> | <PUNTOS> | <FINLINEA> | <COMILLAS> | <COMENTARIO> |<IF> | <SINO> | 
+    <ELSIF> | <SWITCH> | <CASE> | <FINCASE> | <CICLO> | <TIPODATO> | <NULO> | <VALOR_BOOLEANO> | <FUNCION> | <CLASE> |
+    <VALOR_OBJETO> | <TIPO_INTERFAZ> |  <TIPO_DELEGADO> | <GLOBAL> | <IO> | <RETORNO> | <ITERACION> | <PRUEBA> | <ATRAPADOR> | 
+    <COMPARADOR> | <ABRIR_ARCHIVO> | <LEER_ARCHIVO> | <LEER_LINEA> | <ESCRIBIR> | <ESCRIBIR_LINEA> | <IMPRIMIR> | <EJECUCION> |
+    <ERROR_EXCEPCION> | <ERROR_BLOQUEO> | <ERROR_FINALIZACION> | <SELECTOR> | <METODO_DESDE> | <METODO_TIPO> |  <VALOR_DE_OBJETO> 
+    | <BIBLIOTECA> | <IMPORTAR_BIBLIOTECA> | <ABSTRACCION> | <GET> | <SET> | <THROW> | <PUNTERO> | <MOD_ABSTRAC> | <SUPER> |
+    <PARAMETROS> | <TIPO_METODO> | <ESTATICO> | <VALOR> | <INPUT> | <EVENTO> | <REFERENCIA> | <COMPROBAR> | <DESCOMPROBAR> |
+    <SINCRONIZAR> | <CORRER> | <IGNORAR> | <START> | <REMOVE> | <CLEAR> | <REVERSE> | <COPIAR> | <MAXIMO> | <MINIMO> | <SUMAR>
+    | <DETENER> | <PAUSAR> | <SUSPENDER> | <ADJUNTAR> | <EXTENDER> | <INSERTAR> | <MODMATH> | <HEIGHT> | <WIDTH> |  <LEFT> |
+    <RIGHT> | <TOP> | <INDICE> | <TAG> | <BOTTOM>  | <CONTAR> | <ORDENAR> | <TIEMPO> | <ALEATORIO> | <CLOSE> | <BUSCAR> | 
+    <RENOMBRAR> | <FUNCMAT>
+  )*
+
+  <EOF>
+}
+
+public void Inicio():
+{}
+{
+  (Llamarpaquete())? ClasePrincipal()
+  <EOF>
+}
+
+void Llamarpaquete() : 
+{}
+{
+  <IMPORTAR_BIBLIOTECA> <BIBLIOTECA> <IDENTIFICADOR> <FINLINEA>
+  {
+    System.out.println("Llamarpaquete");
+  }
+}
+
+void ClasePrincipal():
+{}
+{
+  <CLASE> <IDENTIFICADOR> BloquePrincipal()
+  {
+    System.out.println("Llamarpaquete");
+  }
+}
+
+void BloquePrincipal() :
+{}
+{
+  <PARIZQ> (<TIPO_METODO>)? MetodoPrincipal() Bloque() <PARDER>
+}
+
+void MetodoPrincipal(): 
+{}
+{
+  <METODO> "Main" <PARIZQ><PARDER>
+}
+
+void Bloque(): 
+{}
+{
+  <LLAVEIZQ> (Declaracion())? (Operacion())? <LLAVEDER>
+}
+
+void Declaracion():
+{}
+{
+  <TIPODATO> <IDENTIFICADOR> Asignar() <FINLINEA>
+}
+
+void Asignar():
+{}
+{
+  "=" (<COMILLAS>)? (<IDENTIFICADOR> | <NUMERO>) | Operacion() (<COMILLAS>)? <FINLINEA>
+}
+
+void Operacion(): 
+{}
+{
+  <IDENTIFICADOR> "=" (<IDENTIFICADOR> | <NUMERO>) <OPARITMETICO> (<IDENTIFICADOR> | <NUMERO>) <FINLINEA>
+}
+
+void declaracionGlobal():
+{}
+{
+  <GLOBAL> <IDENTIFICADOR> Asignar() <FINLINEA>
+}
+
+void CuerpoFuncion():
+{}
+{
+  <FUNCION> <IDENTIFICADOR> ParamFuncion() BloqueFuncion()
+}
+
+void ParamFuncion():
+{}
+{
+  <PARIZQ> (VariableFuncion())? <PARDER>
+}
+
+void VariableFuncion():
+{}
+{
+  <TIPODATO> <IDENTIFICADOR> MasVariableFuncion()
+}
+
+void MasVariableFuncion():
+{}
+{
+  ("," <IDENTIFICADOR>)*
+}
+
+void BloqueFuncion():
+{}
+{
+  <LLAVEIZQ> (Declaracion())? (Operacion())+ <RETORNO> <IDENTIFICADOR> <FINLINEA> <LLAVEDER>
+}
+
+void CuerpoIF():
+{}
+{
+  <IF> Argumento() Bloque()
+}
+
+void Argumento():
+{}
+{
+  <PARIZQ> <IDENTIFICADOR> <OPRELACIONAL> (<IDENTIFICADOR> | <NUMERO>) <PARDER>
+}
+
+void CuerpoSino():
+{}
+{
+  <SINO> Bloque()
+}
+
+void CuerpoELSIF():
+{}
+{
+  <ELSIF> Argumento() Bloque()
+}
+
+void CuerpoMientras():
+{}
+{
+  "while" Argumento() <THEN> Bloque()
+}
+
+void CuerpoFor():
+{}
+{
+  "for" ArgumentoFor() <THEN> Bloque()
+}
+
+void ArgumentoFor():
+{}
+{
+  <PARIZQ> <IDENTIFICADOR> "=" <NUMERO> ";" <IDENTIFICADOR> <OPRELACIONAL> <NUMERO> ";" <IDENTIFICADOR> (<INCREMENTO> | <DECREMENTO>)
+}
+
+void ExpresionLambda():
+{}
+{
+  <IDENTIFICADOR> "=" <LAMBDA> ArgumentoLambda() expresion() <FINLINEA>
+}
+
+void ArgumentoLambda():
+{}
+{
+  <IDENTIFICADOR> MasID() <APUNTADOR>
+}
+
+void MasID():
+{}
+{
+  ("," <IDENTIFICADOR>)*
+}
+
+void expresion():
+{}
+{
+  (<IDENTIFICADOR> | <NUMERO>) <OPARITMETICO> (<IDENTIFICADOR> | <NUMERO>)
+}
+
+
+
+
+
+
+
+
+
+
