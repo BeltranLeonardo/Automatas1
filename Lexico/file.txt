@@ -1,21 +1,28 @@
 import packg hola;
+import packg hola;
+import packg hola;
+import packg hola;
+
 
 class clase (
   void Main() {
   strg nombre = "juan";
-  }
-)
+})
 
 class clase2 (
-   a = 2 +2;
+   
 	  func obtener(strg nombre, strg apellido) {
-	   jeremi = 25;
+	  let jeremi = 25;
+	    for(i=2;i<4;i--) then{
+		i = jeremi;
+ 	}
 	    return jeremi;
 	}
 	else {
 	 juan = 25;
 	 while(a > b) then {
 	juan = 25;
+	if(b < d){leo = "a";}
 	}
       }
 	
@@ -24,4 +31,15 @@ class clase2 (
  	}
 	
 	R = 56 / 8;
+)
+
+class hombre (
+	public void metodo(){
+	if(balon != nombre) {
+	nombre += 2;
+	lambda balon(a,b,c) => 20*a;
+	}
+	
+	rept{ a += 10; until a = 20 * 20;}
+}
 )

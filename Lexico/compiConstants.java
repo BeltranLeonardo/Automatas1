@@ -75,49 +75,49 @@ public interface compiConstants {
   /** RegularExpression Id. */
   int FOREACH = 38;
   /** RegularExpression Id. */
-  int REPEAT = 39;
+  int REPETIR = 39;
   /** RegularExpression Id. */
-  int NUMERO = 40;
+  int HASTA = 40;
   /** RegularExpression Id. */
-  int TIPODATO = 41;
+  int NUMERO = 41;
   /** RegularExpression Id. */
-  int NULO = 42;
+  int TIPODATO = 42;
   /** RegularExpression Id. */
-  int VALOR_BOOLEANO = 43;
+  int NULO = 43;
   /** RegularExpression Id. */
-  int FUNCION = 44;
+  int VALOR_BOOLEANO = 44;
   /** RegularExpression Id. */
-  int CLASE = 45;
+  int FUNCION = 45;
   /** RegularExpression Id. */
-  int VALOR_OBJETO = 46;
+  int CLASE = 46;
   /** RegularExpression Id. */
-  int TIPO_INTERFAZ = 47;
+  int VALOR_OBJETO = 47;
   /** RegularExpression Id. */
-  int TIPO_DELEGADO = 48;
+  int TIPO_INTERFAZ = 48;
   /** RegularExpression Id. */
-  int GLOBAL = 49;
+  int TIPO_DELEGADO = 49;
   /** RegularExpression Id. */
-  int IO = 50;
+  int GLOBAL = 50;
   /** RegularExpression Id. */
-  int RETORNO = 51;
+  int IO = 51;
   /** RegularExpression Id. */
-  int THEN = 52;
+  int RETORNO = 52;
   /** RegularExpression Id. */
-  int ITERACION = 53;
+  int THEN = 53;
   /** RegularExpression Id. */
-  int PRUEBA = 54;
+  int ITERACION = 54;
   /** RegularExpression Id. */
-  int ATRAPADOR = 55;
+  int PRUEBA = 55;
   /** RegularExpression Id. */
-  int COMPARADOR = 56;
+  int ATRAPADOR = 56;
   /** RegularExpression Id. */
-  int ABRIR_ARCHIVO = 57;
+  int COMPARADOR = 57;
   /** RegularExpression Id. */
-  int LEER_ARCHIVO = 58;
+  int ABRIR_ARCHIVO = 58;
   /** RegularExpression Id. */
-  int LEER_LINEA = 59;
+  int LEER_ARCHIVO = 59;
   /** RegularExpression Id. */
-  int MAIN = 60;
+  int LEER_LINEA = 60;
   /** RegularExpression Id. */
   int ESCRIBIR = 61;
   /** RegularExpression Id. */
@@ -295,7 +295,8 @@ public interface compiConstants {
     "\"while\"",
     "\"for\"",
     "\"foreach\"",
-    "\"rpt\"",
+    "\"rept\"",
+    "\"until\"",
     "<NUMERO>",
     "<TIPODATO>",
     "\"null\"",
@@ -316,7 +317,6 @@ public interface compiConstants {
     "\"open\"",
     "\"readfile\"",
     "\"readln\"",
-    "\"Main\"",
     "\"write\"",
     "\"writeln\"",
     "<IMPRIMIR>",

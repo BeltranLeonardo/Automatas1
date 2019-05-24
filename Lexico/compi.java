@@ -19,15 +19,19 @@ public class compi implements compiConstants {
   }
 
   static final public void Inicio() throws ParseException {
-    switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-    case IMPORTAR_BIBLIOTECA:
-      Llamarpaquete();
-      break;
-    default:
-      jj_la1[0] = jj_gen;
-      ;
-    }
     label_1:
+    while (true) {
+      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+      case IMPORTAR_BIBLIOTECA:
+        ;
+        break;
+      default:
+        jj_la1[0] = jj_gen;
+        break label_1;
+      }
+      Llamarpaquete();
+    }
+    label_2:
     while (true) {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case CLASE:
@@ -35,7 +39,7 @@ public class compi implements compiConstants {
         break;
       default:
         jj_la1[1] = jj_gen;
-        break label_1;
+        break label_2;
       }
       Clase();
     }
@@ -61,7 +65,7 @@ public class compi implements compiConstants {
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case TIPO_METODO:
     case METODO:
-      PartePrincipal();
+      CuerpoMetodo();
       break;
     default:
       jj_la1[2] = jj_gen;
@@ -71,14 +75,16 @@ public class compi implements compiConstants {
   }
 
   static final public void Sentencias() throws ParseException {
-    label_2:
+    label_3:
     while (true) {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+      case LAMBDA:
       case IF:
       case SINO:
       case ELSIF:
       case MIENTRAS:
       case FOR:
+      case REPETIR:
       case TIPODATO:
       case FUNCION:
       case IDENTIFICADOR:
@@ -86,7 +92,7 @@ public class compi implements compiConstants {
         break;
       default:
         jj_la1[3] = jj_gen;
-        break label_2;
+        break label_3;
       }
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case TIPODATO:
@@ -101,6 +107,9 @@ public class compi implements compiConstants {
       case IF:
         CuerpoIF();
         break;
+      case REPETIR:
+        CicloRepetir();
+        break;
       case FOR:
         CuerpoFor();
         break;
@@ -113,6 +122,9 @@ public class compi implements compiConstants {
       case MIENTRAS:
         CuerpoMientras();
         break;
+      case LAMBDA:
+        ExpresionLambda();
+        break;
       default:
         jj_la1[4] = jj_gen;
         jj_consume_token(-1);
@@ -121,7 +133,7 @@ public class compi implements compiConstants {
     }
   }
 
-  static final public void PartePrincipal() throws ParseException {
+  static final public void CuerpoMetodo() throws ParseException {
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case TIPO_METODO:
       jj_consume_token(TIPO_METODO);
@@ -131,7 +143,7 @@ public class compi implements compiConstants {
       ;
     }
     jj_consume_token(METODO);
-    jj_consume_token(MAIN);
+    jj_consume_token(IDENTIFICADOR);
     jj_consume_token(PARIZQ);
     jj_consume_token(PARDER);
     Bloque2();
@@ -197,7 +209,18 @@ public class compi implements compiConstants {
 
   static final public void Operacion() throws ParseException {
     jj_consume_token(IDENTIFICADOR);
-    jj_consume_token(ASIGNACION);
+    switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+    case ASIGNACION:
+      jj_consume_token(ASIGNACION);
+      break;
+    case OPASIGNACION:
+      jj_consume_token(OPASIGNACION);
+      break;
+    default:
+      jj_la1[9] = jj_gen;
+      jj_consume_token(-1);
+      throw new ParseException();
+    }
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case COMILLAS:
       AsignarCadena();
@@ -212,7 +235,7 @@ public class compi implements compiConstants {
         jj_consume_token(NUMERO);
         break;
       default:
-        jj_la1[9] = jj_gen;
+        jj_la1[10] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -227,18 +250,18 @@ public class compi implements compiConstants {
           jj_consume_token(NUMERO);
           break;
         default:
-          jj_la1[10] = jj_gen;
+          jj_la1[11] = jj_gen;
           jj_consume_token(-1);
           throw new ParseException();
         }
         break;
       default:
-        jj_la1[11] = jj_gen;
+        jj_la1[12] = jj_gen;
         ;
       }
       break;
     default:
-      jj_la1[12] = jj_gen;
+      jj_la1[13] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -266,7 +289,7 @@ public class compi implements compiConstants {
       VariableFuncion();
       break;
     default:
-      jj_la1[13] = jj_gen;
+      jj_la1[14] = jj_gen;
       ;
     }
     jj_consume_token(PARDER);
@@ -279,15 +302,15 @@ public class compi implements compiConstants {
   }
 
   static final public void MasVariableFuncion() throws ParseException {
-    label_3:
+    label_4:
     while (true) {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case COMA:
         ;
         break;
       default:
-        jj_la1[14] = jj_gen;
-        break label_3;
+        jj_la1[15] = jj_gen;
+        break label_4;
       }
       jj_consume_token(COMA);
       jj_consume_token(TIPODATO);
@@ -297,26 +320,7 @@ public class compi implements compiConstants {
 
   static final public void BloqueFuncion() throws ParseException {
     jj_consume_token(LLAVEIZQ);
-    switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-    case TIPODATO:
-      Declaracion();
-      break;
-    default:
-      jj_la1[15] = jj_gen;
-      ;
-    }
-    label_4:
-    while (true) {
-      Operacion();
-      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case IDENTIFICADOR:
-        ;
-        break;
-      default:
-        jj_la1[16] = jj_gen;
-        break label_4;
-      }
-    }
+    Sentencias();
     jj_consume_token(RETORNO);
     jj_consume_token(IDENTIFICADOR);
     jj_consume_token(FINLINEA);
@@ -341,7 +345,7 @@ public class compi implements compiConstants {
       jj_consume_token(NUMERO);
       break;
     default:
-      jj_la1[17] = jj_gen;
+      jj_la1[16] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -392,7 +396,7 @@ public class compi implements compiConstants {
       jj_consume_token(DECREMENTO);
       break;
     default:
-      jj_la1[18] = jj_gen;
+      jj_la1[17] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -400,17 +404,18 @@ public class compi implements compiConstants {
   }
 
   static final public void ExpresionLambda() throws ParseException {
-    jj_consume_token(IDENTIFICADOR);
-    jj_consume_token(ASIGNACION);
     jj_consume_token(LAMBDA);
+    jj_consume_token(IDENTIFICADOR);
     ArgumentoLambda();
     expresion();
     jj_consume_token(FINLINEA);
   }
 
   static final public void ArgumentoLambda() throws ParseException {
+    jj_consume_token(PARIZQ);
     jj_consume_token(IDENTIFICADOR);
     MasID();
+    jj_consume_token(PARDER);
     jj_consume_token(APUNTADOR);
   }
 
@@ -422,7 +427,7 @@ public class compi implements compiConstants {
         ;
         break;
       default:
-        jj_la1[19] = jj_gen;
+        jj_la1[18] = jj_gen;
         break label_5;
       }
       jj_consume_token(COMA);
@@ -439,7 +444,7 @@ public class compi implements compiConstants {
       jj_consume_token(NUMERO);
       break;
     default:
-      jj_la1[20] = jj_gen;
+      jj_la1[19] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -452,10 +457,19 @@ public class compi implements compiConstants {
       jj_consume_token(NUMERO);
       break;
     default:
-      jj_la1[21] = jj_gen;
+      jj_la1[20] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
+  }
+
+  static final public void CicloRepetir() throws ParseException {
+    jj_consume_token(REPETIR);
+    jj_consume_token(LLAVEIZQ);
+    Sentencias();
+    jj_consume_token(HASTA);
+    Operacion();
+    jj_consume_token(LLAVEDER);
   }
 
   static private boolean jj_initialized_once = false;
@@ -468,7 +482,7 @@ public class compi implements compiConstants {
   static public Token jj_nt;
   static private int jj_ntk;
   static private int jj_gen;
-  static final private int[] jj_la1 = new int[22];
+  static final private int[] jj_la1 = new int[21];
   static private int[] jj_la1_0;
   static private int[] jj_la1_1;
   static private int[] jj_la1_2;
@@ -480,16 +494,16 @@ public class compi implements compiConstants {
       jj_la1_init_3();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0x0,0x0,0x0,0xc0000000,0xc0000000,0x0,0x4000000,0x0,0x0,0x0,0x0,0x40,0x4000000,0x0,0x2000000,0x0,0x0,0x0,0x1800,0x2000000,0x0,0x0,};
+      jj_la1_0 = new int[] {0x0,0x0,0x0,0xc0020000,0xc0020000,0x0,0x4000000,0x0,0x0,0x600,0x0,0x0,0x40,0x4000000,0x0,0x2000000,0x0,0x1800,0x2000000,0x0,0x0,};
    }
    private static void jj_la1_init_1() {
-      jj_la1_1 = new int[] {0x0,0x2000,0x0,0x1231,0x1231,0x0,0x100,0x100,0x100,0x100,0x100,0x0,0x100,0x200,0x0,0x200,0x0,0x100,0x0,0x0,0x100,0x100,};
+      jj_la1_1 = new int[] {0x0,0x4000,0x0,0x24b1,0x24b1,0x0,0x200,0x200,0x200,0x0,0x200,0x200,0x0,0x200,0x400,0x0,0x200,0x0,0x0,0x200,0x200,};
    }
    private static void jj_la1_init_2() {
-      jj_la1_2 = new int[] {0x400,0x0,0x80000,0x0,0x0,0x80000,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,};
+      jj_la1_2 = new int[] {0x400,0x0,0x80000,0x0,0x0,0x80000,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,};
    }
    private static void jj_la1_init_3() {
-      jj_la1_3 = new int[] {0x0,0x0,0x80000,0x40000000,0x40000000,0x0,0x40000000,0x40000000,0x40000000,0x40000000,0x40000000,0x0,0x40000000,0x0,0x0,0x0,0x40000000,0x40000000,0x0,0x0,0x40000000,0x40000000,};
+      jj_la1_3 = new int[] {0x0,0x0,0x80000,0x40000000,0x40000000,0x0,0x40000000,0x40000000,0x40000000,0x0,0x40000000,0x40000000,0x0,0x40000000,0x0,0x0,0x40000000,0x0,0x0,0x40000000,0x40000000,};
    }
 
   /** Constructor with InputStream. */
@@ -510,7 +524,7 @@ public class compi implements compiConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 22; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 21; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -524,7 +538,7 @@ public class compi implements compiConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 22; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 21; i++) jj_la1[i] = -1;
   }
 
   /** Constructor. */
@@ -541,7 +555,7 @@ public class compi implements compiConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 22; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 21; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -551,7 +565,7 @@ public class compi implements compiConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 22; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 21; i++) jj_la1[i] = -1;
   }
 
   /** Constructor with generated Token Manager. */
@@ -567,7 +581,7 @@ public class compi implements compiConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 22; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 21; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -576,7 +590,7 @@ public class compi implements compiConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 22; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 21; i++) jj_la1[i] = -1;
   }
 
   static private Token jj_consume_token(int kind) throws ParseException {
@@ -632,7 +646,7 @@ public class compi implements compiConstants {
       la1tokens[jj_kind] = true;
       jj_kind = -1;
     }
-    for (int i = 0; i < 22; i++) {
+    for (int i = 0; i < 21; i++) {
       if (jj_la1[i] == jj_gen) {
         for (int j = 0; j < 32; j++) {
           if ((jj_la1_0[i] & (1<<j)) != 0) {

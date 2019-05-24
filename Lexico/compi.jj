@@ -21,6 +21,8 @@ public class compi
 }
 PARSER_END(compi)
 
+/*  LEXICO */
+
 SKIP : { " " }
 SKIP : { "\n" | "\r" | "\r\n" | "\t" }
 
@@ -80,10 +82,11 @@ TOKEN : { <FINCASE: "break"> }
 TOKEN : { <MIENTRAS: "while" > }
 TOKEN : { <FOR: "for" > }
 TOKEN : { <FOREACH: "foreach" > }
-TOKEN : { <REPEAT: "rpt" > }
+TOKEN : { <REPETIR: "rept" > }
+TOKEN : { <HASTA: "until"> }
 TOKEN : { <NUMERO: (["0"-"9"])+> }
 TOKEN : {
-  <TIPODATO : "strg" | "num" | "flt" | "const" | "dobl" | "bool" | "byte" | "shrt" | "char" | "decim" | "enum" | "struct" | "date" | "datetime" >
+  <TIPODATO : "strg" | "let" | "flt" | "const" | "dobl" | "bool" | "byte" | "shrt" | "char" | "decim" | "enum" | "struct" | "date" | "datetime" >
   }
 TOKEN : { <NULO: "null"> }
 TOKEN : { <VALOR_BOOLEANO: "true" | "false"> }
@@ -103,7 +106,6 @@ TOKEN : { <COMPARADOR: "like"> }
 TOKEN : { <ABRIR_ARCHIVO: "open"> }
 TOKEN : { <LEER_ARCHIVO: "readfile"> }
 TOKEN : { <LEER_LINEA: "readln"> }
-TOKEN : { <MAIN: "Main"> }
 TOKEN : { <ESCRIBIR: "write"> }
 TOKEN : { <ESCRIBIR_LINEA: "writeln"> }
 TOKEN : { <IMPRIMIR: "print" | "println"> }
@@ -176,11 +178,12 @@ TOKEN: {
 }
 TOKEN : { <IDENTIFICADOR: ["a"-"z","A"-"Z","_"](["a"-"z","A"-"Z","_","0"-"9"])*> }
 
+/*  GRAMATICA  */
 
 public void Inicio():
 {}
 {
-  (Llamarpaquete())? (Clase())*
+  (Llamarpaquete())* (Clase())*
   <EOF>
 }
 
@@ -199,20 +202,20 @@ void Clase():
 void Bloque():
 {}
 {
-  (PartePrincipal())?  Sentencias()
+  (CuerpoMetodo())?  Sentencias()
 }
 
 void Sentencias():
 {}
 {
-  (Declaracion() | Operacion() | CuerpoFuncion() | CuerpoIF() |
-  CuerpoFor() | CuerpoSino() | CuerpoELSIF() | CuerpoMientras())*
+  (Declaracion() | Operacion() | CuerpoFuncion() | CuerpoIF() | CicloRepetir() |
+  CuerpoFor() | CuerpoSino() | CuerpoELSIF() | CuerpoMientras() | ExpresionLambda())*
 }
 
-void PartePrincipal():
+void CuerpoMetodo():
 {}
 {
-  (<TIPO_METODO>)? <METODO> <MAIN> <PARIZQ><PARDER> Bloque2()
+  (<TIPO_METODO>)? <METODO> <IDENTIFICADOR> <PARIZQ><PARDER> Bloque2()
 }
 
 void Bloque2():
@@ -242,8 +245,9 @@ void AsignarOp():
 void Operacion():
 {}
 {
-  <IDENTIFICADOR> <ASIGNACION> (AsignarCadena() | (<IDENTIFICADOR> | <NUMERO>) (<OPARITMETICO> (<IDENTIFICADOR> | <NUMERO>))?) <FINLINEA>
+  <IDENTIFICADOR> (<ASIGNACION>|<OPASIGNACION>) (AsignarCadena() | (<IDENTIFICADOR> | <NUMERO>) (<OPARITMETICO> (<IDENTIFICADOR> | <NUMERO>))?) <FINLINEA>
 }
+
 
 void declaracionGlobal():
 {}
@@ -278,8 +282,9 @@ void MasVariableFuncion():
 void BloqueFuncion():
 {}
 {
-  <LLAVEIZQ> (Declaracion())? (Operacion())+ <RETORNO> <IDENTIFICADOR> <FINLINEA> <LLAVEDER>
+  <LLAVEIZQ> Sentencias() <RETORNO> <IDENTIFICADOR> <FINLINEA> <LLAVEDER>
 }
+
 
 void CuerpoIF():
 {}
@@ -326,13 +331,13 @@ void ArgumentoFor():
 void ExpresionLambda():
 {}
 {
-  <IDENTIFICADOR> <ASIGNACION> <LAMBDA> ArgumentoLambda() expresion() <FINLINEA>
+  <LAMBDA> <IDENTIFICADOR> ArgumentoLambda() expresion() <FINLINEA>
 }
 
 void ArgumentoLambda():
 {}
 {
-  <IDENTIFICADOR> MasID() <APUNTADOR>
+  <PARIZQ> <IDENTIFICADOR> MasID() <PARDER><APUNTADOR>
 }
 
 void MasID():
@@ -345,4 +350,10 @@ void expresion():
 {}
 {
   (<IDENTIFICADOR> | <NUMERO>) <OPARITMETICO> (<IDENTIFICADOR> | <NUMERO>)
+}
+
+void CicloRepetir():
+{}
+{
+  <REPETIR> <LLAVEIZQ>  Sentencias() <HASTA> Operacion() <LLAVEDER>
 }
