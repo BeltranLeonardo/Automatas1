@@ -1,0 +1,27 @@
+import packg hola;
+
+class clase (
+  void Main() {
+  strg nombre = "juan";
+  }
+)
+
+class clase2 (
+   a = 2 +2;
+	  func obtener(strg nombre, strg apellido) {
+	   jeremi = 25;
+	    return jeremi;
+	}
+	else {
+	 juan = 25;
+
+	while(a >= b) then {
+	 b = 5;
+	 if(b < d){
+	 juan = "leo";
+	}
+	}
+
+	
+
+)
