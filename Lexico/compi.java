@@ -396,6 +396,7 @@ public class compi implements compiConstants {
       jj_consume_token(-1);
       throw new ParseException();
     }
+    jj_consume_token(PARDER);
   }
 
   static final public void ExpresionLambda() throws ParseException {
