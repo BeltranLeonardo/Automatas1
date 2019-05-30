@@ -31,7 +31,7 @@ TOKEN : {
 }
 
 TOKEN : {
-  <OPRELACIONAL: ">" | "<" | ">=" | "<=" | "==" | "!=" | "is" | "as">}
+  <OPRELACIONAL: ">" | "<" | ">=" | "<=" | "==" | "!=" | "is">}
 
 TOKEN : {
   <OPLOGICO: "&&" | "||" | "!" | "and" | "or" | "not">
@@ -72,21 +72,23 @@ TOKEN : { <COMA: ",">}
 TOKEN : { <COMILLAS: "\"" | "\'">}
 TOKEN : { <DOSPUNTOS: ":"> }
 TOKEN : { <FINLINEA: ";"> }
-TOKEN : { <COMENTARIO: "#"> }
+TOKEN : { <INICIOCOMENTARIO: "#<"> }
+TOKEN : { <FINCOMENTARIO: ">#"> }
 TOKEN : { <IF: "if"> }
 TOKEN : { <SINO: "else">}
 TOKEN : { <ELSIF: "elsif"> }
 TOKEN : { <SWITCH: "switch">}
 TOKEN : { <CASE: "case"> }
-TOKEN : { <FINCASE: "break"> }
+TOKEN : { <FINCASE: "endcase"> }
 TOKEN : { <MIENTRAS: "while" > }
 TOKEN : { <FOR: "for" > }
 TOKEN : { <FOREACH: "foreach" > }
 TOKEN : { <REPETIR: "rept" > }
 TOKEN : { <HASTA: "until"> }
 TOKEN : { <NUMERO: (["0"-"9"])+> }
+TOKEN : { <CONSTANTE: "cons"> }
 TOKEN : {
-  <TIPODATO : "strg" | "let" | "flt" | "const" | "dobl" | "bool" | "byte" | "shrt" | "char" | "decim" | "enum" | "struct" | "date" | "datetime" >
+  <TIPODATO : "strg" | "let" | "flt"  | "dobl" | "bool" | "byte" | "shrt" | "char" | "decim" | "enum" | "struct" | "date" | "datetime" >
   }
 TOKEN : { <NULO: "null"> }
 TOKEN : { <VALOR_BOOLEANO: "true" | "false"> }
@@ -94,21 +96,25 @@ TOKEN : { <FUNCION: "func"> }
 TOKEN : { <CLASE: "class"> }
 TOKEN : { <VALOR_OBJETO: "object"> }
 TOKEN : { <TIPO_INTERFAZ: "interface"> }
+TOKEN: { <NEXT: "next"> }
 TOKEN : { <TIPO_DELEGADO: "del"> }
+TOKEN : { <COMO: "as"> }
 TOKEN : { <GLOBAL: "global"> }
-TOKEN : { <IO: "in" | "out"> }
+TOKEN : { <EN: "in"> }
 TOKEN : { <RETORNO: "return"> }
 TOKEN : { <THEN: "then"> }
+TOKEN : { <ARREGLO: "array"> }
 TOKEN : { <ITERACION: "continue"> }
 TOKEN : { <PRUEBA: "try"> }
-TOKEN : { <ATRAPADOR: "catch"> }
+TOKEN : { <ATRAPADOR: "oops"> }
 TOKEN : { <COMPARADOR: "like"> }
+TOKEN: { <HILO: "strand"> }
+TOKEN: { <ARCHIVO: "File"> }
 TOKEN : { <ABRIR_ARCHIVO: "open"> }
 TOKEN : { <LEER_ARCHIVO: "readfile"> }
-TOKEN : { <LEER_LINEA: "readln"> }
-TOKEN : { <ESCRIBIR: "write"> }
-TOKEN : { <ESCRIBIR_LINEA: "writeln"> }
-TOKEN : { <IMPRIMIR: "print" | "println"> }
+TOKEN : { <LEER_LINEA: "read" | "readln"> }
+TOKEN : { <ESCRIBIR: "write" | "writeln"> }
+TOKEN : { <IMPRIMIR: "display"> }
 TOKEN : { <EJECUCION: "exec"> }
 TOKEN : { <ERROR_EXCEPCION: "excep"> }
 TOKEN : { <ERROR_BLOQUEO: "raise"> }
@@ -116,7 +122,7 @@ TOKEN : { <ERROR_FINALIZACION: "finally"> }
 TOKEN : { <SELECTOR: "select"> }
 TOKEN : { <METODO_DESDE: "from"> }
 TOKEN : { <METODO_TIPO: "type"> }
-TOKEN : { <VALOR_DE_OBJETO: "default"> }
+TOKEN : { <VALOR_DEFAULT: "default"> }
 TOKEN : { <NUEVO: "new"> }
 TOKEN : { <BIBLIOTECA: "packg"> }
 TOKEN : { <IMPORTAR_BIBLIOTECA: "import"> }
@@ -132,6 +138,7 @@ TOKEN : { <TIPO_METODO: "private" | "protected" | "public"> }
 TOKEN : { <ESTATICO: "static">}
 TOKEN : { <VALOR: "value"> }
 TOKEN : { <INPUT: "input"> }
+TOKEN : { <FINFOR: "endfor"> }
 TOKEN : { <EVENTO: "event"> }
 TOKEN : { <REFERENCIA: "ref"> }
 TOKEN : { <COMPROBAR: "checked"> }
@@ -139,7 +146,9 @@ TOKEN : { <DESCOMPROBAR: "unchecked"> }
 TOKEN : { <SINCRONIZAR: "sync"> }
 TOKEN : { <CORRER: "run"> }
 TOKEN : {<IGNORAR: "pass"> }
-TOKEN : { <START: "Start"> }
+TOKEN : {
+  <INSTRUCHILO: "Start" | "Stop" | "Pause" | "Sleep">
+}
 TOKEN : { <REMOVE: "Remove"> }
 TOKEN : { <CLEAR: "Clear"> }
 TOKEN : { <REVERSE: "Reverse"> }
@@ -147,9 +156,9 @@ TOKEN : { <COPIAR: "Copy"> }
 TOKEN : { <MAXIMO: "Max"> }
 TOKEN : { <MINIMO: "Min"> }
 TOKEN : { <SUMAR: "Sum"> }
-TOKEN : { <DETENER: "Stop"> }
-TOKEN : { <PAUSAR: "Pause"> }
-TOKEN : { <SUSPENDER: "Sleep"> }
+TOKEN : { <FINCLASE: "classend"> }
+TOKEN : { <FINSI: "endif"> }
+TOKEN : { <FINMETODO: "last"> }
 TOKEN : { <ADJUNTAR: "append"> }
 TOKEN : { <EXTENDER: "extend"> }
 TOKEN : { <INSERTAR: "insert"> }
@@ -163,6 +172,7 @@ TOKEN : { <INDICE: "Index">}
 TOKEN : { <METODO: "void">}
 TOKEN : { <TAG: "Tag">}
 TOKEN : { <BOTTOM: "Bottom">}
+TOKEN : { <INSTANCIA: "instance"> }
 TOKEN : { <CONTAR: "count"> }
 TOKEN : { <ORDENAR: "sort"> }
 TOKEN : { <TIEMPO: "time"> }
@@ -183,7 +193,7 @@ TOKEN : { <IDENTIFICADOR: ["a"-"z","A"-"Z","_"](["a"-"z","A"-"Z","_","0"-"9"])*>
 public void Inicio():
 {}
 {
-  (Llamarpaquete())* (Clase())*
+  (Llamarpaquete())* (Clase())* (CuerpoMetodo())+
   <EOF>
 }
 
@@ -196,44 +206,41 @@ void Llamarpaquete() :
 void Clase():
 {}
 {
-  <CLASE> <IDENTIFICADOR> <PARIZQ> Bloque() <PARDER>
+  <CLASE> <DOSPUNTOS> <IDENTIFICADOR> Sentencias() <FINCLASE> <FINLINEA>
 }
 
 void Bloque():
 {}
 {
-  (CuerpoMetodo())?  Sentencias()
+  (CuerpoMetodo())*  Sentencias()
 }
 
 void Sentencias():
 {}
 {
-  (Declaracion() | Operacion() | CuerpoFuncion() | CuerpoIF() | CicloRepetir() |
-  CuerpoFor() | CuerpoSino() | CuerpoELSIF() | CuerpoMientras() | ExpresionLambda())*
+  (Declaracion() | declaracionGlobal() | declaracionConstante() | Operacion() | CuerpoFuncion() |
+  CuerpoIF() | Imprimir() | CicloRepetir() | CuerpoFor() | CuerpoSino() | CuerpoELSIF() |
+  CuerpoMientras() | ExpresionLambda() | Comentario() | Hilo() | CuerpoSwitch() | Prueba() | Atrapar() |
+  Instancia() | Arreglos() | FuncionMath() | AbrirArchivos() | Llamarpaquete() | LeerArchivos() | EntradaDatos())*
 }
 
 void CuerpoMetodo():
 {}
 {
-  (<TIPO_METODO>)? <METODO> <IDENTIFICADOR> <PARIZQ><PARDER> Bloque2()
+  <METODO> <DOSPUNTOS> <IDENTIFICADOR> Sentencias() <FINMETODO> <FINLINEA>
 }
 
-void Bloque2():
-{}
-{
-  <LLAVEIZQ>  Sentencias() <LLAVEDER>
-}
 
 void Declaracion():
 {}
 {
-  <TIPODATO> <IDENTIFICADOR> <ASIGNACION> (AsignarCadena() | AsignarOp()) <FINLINEA>
+  <TIPODATO> <IDENTIFICADOR> <COMO> (AsignarCadena() | AsignarOp())? <FINLINEA>
 }
 
 void AsignarCadena():
 {}
 {
-  (<COMILLAS>) (<IDENTIFICADOR> | <NUMERO>) (<COMILLAS>)
+  (<COMILLAS>) (<IDENTIFICADOR> | <NUMERO>)+ (<COMILLAS>)
 }
 
 void AsignarOp():
@@ -252,80 +259,73 @@ void Operacion():
 void declaracionGlobal():
 {}
 {
-  <GLOBAL> <IDENTIFICADOR> AsignarCadena() <FINLINEA>
+  <GLOBAL> Declaracion()
+}
+
+void declaracionConstante():
+{}
+{
+  <CONSTANTE> Declaracion()
 }
 
 void CuerpoFuncion():
 {}
 {
-  <FUNCION> <IDENTIFICADOR> ParamFuncion() BloqueFuncion()
+  <FUNCION> <DOSPUNTOS> <IDENTIFICADOR> ParamFuncion() Sentencias() <RETORNO> <IDENTIFICADOR> <FINLINEA>
 }
 
 void ParamFuncion():
 {}
 {
-  <PARIZQ> (VariableFuncion())? <PARDER>
+  <PARIZQ> <IDENTIFICADOR> MasParametros() <PARDER>
 }
 
-void VariableFuncion():
+void MasParametros():
 {}
 {
-  <TIPODATO> <IDENTIFICADOR> MasVariableFuncion()
+  (<COMA> <IDENTIFICADOR>)*
 }
-
-void MasVariableFuncion():
-{}
-{
-  (<COMA> <TIPODATO><IDENTIFICADOR>)*
-}
-
-void BloqueFuncion():
-{}
-{
-  <LLAVEIZQ> Sentencias() <RETORNO> <IDENTIFICADOR> <FINLINEA> <LLAVEDER>
-}
-
 
 void CuerpoIF():
 {}
 {
-  <IF> Argumento() Bloque2()
+  <IF> <PUNTERO> Argumento() Sentencias() <FINSI> <FINLINEA>
 }
 
 void Argumento():
 {}
 {
-  <PARIZQ> <IDENTIFICADOR> <OPRELACIONAL> (<IDENTIFICADOR> | <NUMERO>) <PARDER>
+  <DOSPUNTOS> <IDENTIFICADOR> <OPRELACIONAL> (<IDENTIFICADOR> | <NUMERO>) <THEN>
 }
 
 void CuerpoSino():
 {}
 {
-  <SINO> Bloque2()
+  <SINO> <THEN> Sentencias() <FINSI> <FINLINEA>
 }
 
 void CuerpoELSIF():
 {}
 {
-  <ELSIF> Argumento() Bloque2()
+  <ELSIF> <PUNTERO> Argumento() Sentencias() <FINSI> <FINLINEA>
 }
 
 void CuerpoMientras():
 {}
 {
-  <MIENTRAS> Argumento() <THEN> Bloque2()
+  <MIENTRAS> <PUNTERO> Argumento() Sentencias() <FINMETODO>
 }
 
 void CuerpoFor():
 {}
 {
-  <FOR> ArgumentoFor() <THEN> Bloque2()
+  <FOR> <PUNTERO> ArgumentoFor() <DOSPUNTOS> Sentencias() <FINFOR> <FINLINEA>
 }
 
 void ArgumentoFor():
 {}
 {
-  <PARIZQ> <IDENTIFICADOR> <ASIGNACION> <NUMERO> <FINLINEA> <IDENTIFICADOR> <OPRELACIONAL> <NUMERO> <FINLINEA> <IDENTIFICADOR> (<INCREMENTO> | <DECREMENTO>) <PARDER>
+  <PARIZQ> <TIPODATO> <IDENTIFICADOR> <COMA> <IDENTIFICADOR> <OPRELACIONAL> (<IDENTIFICADOR> | <NUMERO>) <COMA> <IDENTIFICADOR> (<INCREMENTO> | <DECREMENTO>) <PARDER>
 }
 
 void ExpresionLambda():
@@ -355,5 +355,119 @@ void expresion():
 void CicloRepetir():
 {}
 {
-  <REPETIR> <LLAVEIZQ>  Sentencias() <HASTA> Operacion() <LLAVEDER>
+  <REPETIR> <PUNTERO> <DOSPUNTOS> Sentencias() <HASTA> Operacion()
+}
+
+void Imprimir():
+{}
+{
+  <IMPRIMIR> <PARIZQ> (<IDENTIFICADOR> | AsignarCadena()) <PARDER> <FINLINEA>
+}
+
+void Comentario():
+{}
+{
+  <INICIOCOMENTARIO> (<IDENTIFICADOR>)+ <FINCOMENTARIO>
+}
+
+void Hilo():
+{}
+{
+  <HILO> <IDENTIFICADOR> <INSTRUCHILO> <FINLINEA>
+}
+
+void CuerpoSwitch():
+{}
+{
+  <SWITCH> <PUNTERO> <APUNTADOR> <IDENTIFICADOR> BloqueSwitch()
+}
+
+void BloqueSwitch():
+{}
+{
+  <EN> <CASE> <NUMERO> <THEN> Sentencias() MasCasos() <FINCASE> <FINLINEA>
+}
+
+void MasCasos():
+{}
+{
+  (<EN> <CASE> <NUMERO> <THEN> Sentencias())*
+}
+
+void ValorDefault():
+{}
+{
+  <VALOR_DEFAULT> Sentencias()
+}
+
+void Prueba():
+{}
+{
+  <PRUEBA> <NEXT> Sentencias() <FINMETODO> <PRUEBA> <FINLINEA>
+}
+
+void Atrapar():
+{}
+{
+  <ATRAPADOR> <DOSPUNTOS> Sentencias() <FINMETODO> <ATRAPADOR> <FINLINEA>
+}
+
+void Instancia():
+{}
+{
+    <INSTANCIA> <IDENTIFICADOR> <COMO> <NUEVO> <IDENTIFICADOR> <CORIZQ> <CORDER>
+}
+
+void Arreglos():
+{}
+{
+  <ARREGLO> <IDENTIFICADOR> <COMO> BloqueArreglos()
+}
+
+void BloqueArreglos():
+{}
+{
+  <CORIZQ> (AsignarCadena() | <NUMERO>) MasCadenasNumeros() <CORDER>
+}
+
+void MasCadenasNumeros():
+{}
+{
+  (<COMA> (AsignarCadena() | <NUMERO>))*
+}
+
+void FuncionMath():
+{}
+{
+  <MODMATH> <PUNTO> <FUNCMAT> <PARIZQ> <IDENTIFICADOR> <COMA> <NUMERO> <PARDER>
+}
+
+void AbrirArchivos():
+{}
+{
+  <ABRIR_ARCHIVO> <PUNTO> <ARCHIVO> <PARIZQ> CadenaArchivo() <PARDER>
+}
+
+void CadenaArchivo():
+{}
+{
+  <COMILLAS> <IDENTIFICADOR> <PUNTO> <IDENTIFICADOR> <COMILLAS>
+}
+
+void LeerArchivos():
+{}
+{
+  <LEER_ARCHIVO> <PARIZQ> <PARDER> <FINLINEA>
+}
+
+void EntradaDatos():
+{}
+{
+  <INPUT> <PUNTO> (<LEER_LINEA> | SalidaDatos()) <FINLINEA>
+}
+
+void SalidaDatos():
+{}
+{
+  <ESCRIBIR> <PARIZQ> AsignarCadena() <COMA> (<NUMERO> | <IDENTIFICADOR>) <PARDER>
 }

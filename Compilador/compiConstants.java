@@ -55,201 +55,217 @@ public interface compiConstants {
   /** RegularExpression Id. */
   int FINLINEA = 28;
   /** RegularExpression Id. */
-  int COMENTARIO = 29;
+  int INICIOCOMENTARIO = 29;
   /** RegularExpression Id. */
-  int IF = 30;
+  int FINCOMENTARIO = 30;
   /** RegularExpression Id. */
-  int SINO = 31;
+  int IF = 31;
   /** RegularExpression Id. */
-  int ELSIF = 32;
+  int SINO = 32;
   /** RegularExpression Id. */
-  int SWITCH = 33;
+  int ELSIF = 33;
   /** RegularExpression Id. */
-  int CASE = 34;
+  int SWITCH = 34;
   /** RegularExpression Id. */
-  int FINCASE = 35;
+  int CASE = 35;
   /** RegularExpression Id. */
-  int MIENTRAS = 36;
+  int FINCASE = 36;
   /** RegularExpression Id. */
-  int FOR = 37;
+  int MIENTRAS = 37;
   /** RegularExpression Id. */
-  int FOREACH = 38;
+  int FOR = 38;
   /** RegularExpression Id. */
-  int REPETIR = 39;
+  int FOREACH = 39;
   /** RegularExpression Id. */
-  int HASTA = 40;
+  int REPETIR = 40;
   /** RegularExpression Id. */
-  int NUMERO = 41;
+  int HASTA = 41;
   /** RegularExpression Id. */
-  int TIPODATO = 42;
+  int NUMERO = 42;
   /** RegularExpression Id. */
-  int NULO = 43;
+  int CONSTANTE = 43;
   /** RegularExpression Id. */
-  int VALOR_BOOLEANO = 44;
+  int TIPODATO = 44;
   /** RegularExpression Id. */
-  int FUNCION = 45;
+  int NULO = 45;
   /** RegularExpression Id. */
-  int CLASE = 46;
+  int VALOR_BOOLEANO = 46;
   /** RegularExpression Id. */
-  int VALOR_OBJETO = 47;
+  int FUNCION = 47;
   /** RegularExpression Id. */
-  int TIPO_INTERFAZ = 48;
+  int CLASE = 48;
   /** RegularExpression Id. */
-  int TIPO_DELEGADO = 49;
+  int VALOR_OBJETO = 49;
   /** RegularExpression Id. */
-  int GLOBAL = 50;
+  int TIPO_INTERFAZ = 50;
   /** RegularExpression Id. */
-  int IO = 51;
+  int NEXT = 51;
   /** RegularExpression Id. */
-  int RETORNO = 52;
+  int TIPO_DELEGADO = 52;
   /** RegularExpression Id. */
-  int THEN = 53;
+  int COMO = 53;
   /** RegularExpression Id. */
-  int ITERACION = 54;
+  int GLOBAL = 54;
   /** RegularExpression Id. */
-  int PRUEBA = 55;
+  int EN = 55;
   /** RegularExpression Id. */
-  int ATRAPADOR = 56;
+  int RETORNO = 56;
   /** RegularExpression Id. */
-  int COMPARADOR = 57;
+  int THEN = 57;
   /** RegularExpression Id. */
-  int ABRIR_ARCHIVO = 58;
+  int ARREGLO = 58;
   /** RegularExpression Id. */
-  int LEER_ARCHIVO = 59;
+  int ITERACION = 59;
   /** RegularExpression Id. */
-  int LEER_LINEA = 60;
+  int PRUEBA = 60;
   /** RegularExpression Id. */
-  int ESCRIBIR = 61;
+  int ATRAPADOR = 61;
   /** RegularExpression Id. */
-  int ESCRIBIR_LINEA = 62;
+  int COMPARADOR = 62;
   /** RegularExpression Id. */
-  int IMPRIMIR = 63;
+  int HILO = 63;
   /** RegularExpression Id. */
-  int EJECUCION = 64;
+  int ARCHIVO = 64;
   /** RegularExpression Id. */
-  int ERROR_EXCEPCION = 65;
+  int ABRIR_ARCHIVO = 65;
   /** RegularExpression Id. */
-  int ERROR_BLOQUEO = 66;
+  int LEER_ARCHIVO = 66;
   /** RegularExpression Id. */
-  int ERROR_FINALIZACION = 67;
+  int LEER_LINEA = 67;
   /** RegularExpression Id. */
-  int SELECTOR = 68;
+  int ESCRIBIR = 68;
   /** RegularExpression Id. */
-  int METODO_DESDE = 69;
+  int IMPRIMIR = 69;
   /** RegularExpression Id. */
-  int METODO_TIPO = 70;
+  int EJECUCION = 70;
   /** RegularExpression Id. */
-  int VALOR_DE_OBJETO = 71;
+  int ERROR_EXCEPCION = 71;
   /** RegularExpression Id. */
-  int NUEVO = 72;
+  int ERROR_BLOQUEO = 72;
   /** RegularExpression Id. */
-  int BIBLIOTECA = 73;
+  int ERROR_FINALIZACION = 73;
   /** RegularExpression Id. */
-  int IMPORTAR_BIBLIOTECA = 74;
+  int SELECTOR = 74;
   /** RegularExpression Id. */
-  int ABSTRACCION = 75;
+  int METODO_DESDE = 75;
   /** RegularExpression Id. */
-  int GET = 76;
+  int METODO_TIPO = 76;
   /** RegularExpression Id. */
-  int SET = 77;
+  int VALOR_DEFAULT = 77;
   /** RegularExpression Id. */
-  int THROW = 78;
+  int NUEVO = 78;
   /** RegularExpression Id. */
-  int PUNTERO = 79;
+  int BIBLIOTECA = 79;
   /** RegularExpression Id. */
-  int MOD_ABSTRAC = 80;
+  int IMPORTAR_BIBLIOTECA = 80;
   /** RegularExpression Id. */
-  int SUPER = 81;
+  int ABSTRACCION = 81;
   /** RegularExpression Id. */
-  int PARAMETROS = 82;
+  int GET = 82;
   /** RegularExpression Id. */
-  int TIPO_METODO = 83;
+  int SET = 83;
   /** RegularExpression Id. */
-  int ESTATICO = 84;
+  int THROW = 84;
   /** RegularExpression Id. */
-  int VALOR = 85;
+  int PUNTERO = 85;
   /** RegularExpression Id. */
-  int INPUT = 86;
+  int MOD_ABSTRAC = 86;
   /** RegularExpression Id. */
-  int EVENTO = 87;
+  int SUPER = 87;
   /** RegularExpression Id. */
-  int REFERENCIA = 88;
+  int PARAMETROS = 88;
   /** RegularExpression Id. */
-  int COMPROBAR = 89;
+  int TIPO_METODO = 89;
   /** RegularExpression Id. */
-  int DESCOMPROBAR = 90;
+  int ESTATICO = 90;
   /** RegularExpression Id. */
-  int SINCRONIZAR = 91;
+  int VALOR = 91;
   /** RegularExpression Id. */
-  int CORRER = 92;
+  int INPUT = 92;
   /** RegularExpression Id. */
-  int IGNORAR = 93;
+  int FINFOR = 93;
   /** RegularExpression Id. */
-  int START = 94;
+  int EVENTO = 94;
   /** RegularExpression Id. */
-  int REMOVE = 95;
+  int REFERENCIA = 95;
   /** RegularExpression Id. */
-  int CLEAR = 96;
+  int COMPROBAR = 96;
   /** RegularExpression Id. */
-  int REVERSE = 97;
+  int DESCOMPROBAR = 97;
   /** RegularExpression Id. */
-  int COPIAR = 98;
+  int SINCRONIZAR = 98;
   /** RegularExpression Id. */
-  int MAXIMO = 99;
+  int CORRER = 99;
   /** RegularExpression Id. */
-  int MINIMO = 100;
+  int IGNORAR = 100;
   /** RegularExpression Id. */
-  int SUMAR = 101;
+  int INSTRUCHILO = 101;
   /** RegularExpression Id. */
-  int DETENER = 102;
+  int REMOVE = 102;
   /** RegularExpression Id. */
-  int PAUSAR = 103;
+  int CLEAR = 103;
   /** RegularExpression Id. */
-  int SUSPENDER = 104;
+  int REVERSE = 104;
   /** RegularExpression Id. */
-  int ADJUNTAR = 105;
+  int COPIAR = 105;
   /** RegularExpression Id. */
-  int EXTENDER = 106;
+  int MAXIMO = 106;
   /** RegularExpression Id. */
-  int INSERTAR = 107;
+  int MINIMO = 107;
   /** RegularExpression Id. */
-  int MODMATH = 108;
+  int SUMAR = 108;
   /** RegularExpression Id. */
-  int HEIGHT = 109;
+  int FINCLASE = 109;
   /** RegularExpression Id. */
-  int WIDTH = 110;
+  int FINSI = 110;
   /** RegularExpression Id. */
-  int LEFT = 111;
+  int FINMETODO = 111;
   /** RegularExpression Id. */
-  int RIGHT = 112;
+  int ADJUNTAR = 112;
   /** RegularExpression Id. */
-  int TOP = 113;
+  int EXTENDER = 113;
   /** RegularExpression Id. */
-  int INDICE = 114;
+  int INSERTAR = 114;
   /** RegularExpression Id. */
-  int METODO = 115;
+  int MODMATH = 115;
   /** RegularExpression Id. */
-  int TAG = 116;
+  int HEIGHT = 116;
   /** RegularExpression Id. */
-  int BOTTOM = 117;
+  int WIDTH = 117;
   /** RegularExpression Id. */
-  int CONTAR = 118;
+  int LEFT = 118;
   /** RegularExpression Id. */
-  int ORDENAR = 119;
+  int RIGHT = 119;
   /** RegularExpression Id. */
-  int TIEMPO = 120;
+  int TOP = 120;
   /** RegularExpression Id. */
-  int ALEATORIO = 121;
+  int INDICE = 121;
   /** RegularExpression Id. */
-  int CLOSE = 122;
+  int METODO = 122;
   /** RegularExpression Id. */
-  int BUSCAR = 123;
+  int TAG = 123;
   /** RegularExpression Id. */
-  int RENOMBRAR = 124;
+  int BOTTOM = 124;
   /** RegularExpression Id. */
-  int FUNCMAT = 125;
+  int INSTANCIA = 125;
   /** RegularExpression Id. */
-  int IDENTIFICADOR = 126;
+  int CONTAR = 126;
+  /** RegularExpression Id. */
+  int ORDENAR = 127;
+  /** RegularExpression Id. */
+  int TIEMPO = 128;
+  /** RegularExpression Id. */
+  int ALEATORIO = 129;
+  /** RegularExpression Id. */
+  int CLOSE = 130;
+  /** RegularExpression Id. */
+  int BUSCAR = 131;
+  /** RegularExpression Id. */
+  int RENOMBRAR = 132;
+  /** RegularExpression Id. */
+  int FUNCMAT = 133;
+  /** RegularExpression Id. */
+  int IDENTIFICADOR = 134;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -285,19 +301,21 @@ public interface compiConstants {
     "<COMILLAS>",
     "\":\"",
     "\";\"",
-    "\"#\"",
+    "\"#<\"",
+    "\">#\"",
     "\"if\"",
     "\"else\"",
     "\"elsif\"",
     "\"switch\"",
     "\"case\"",
-    "\"break\"",
+    "\"endcase\"",
     "\"while\"",
     "\"for\"",
     "\"foreach\"",
     "\"rept\"",
     "\"until\"",
     "<NUMERO>",
+    "\"cons\"",
     "<TIPODATO>",
     "\"null\"",
     "<VALOR_BOOLEANO>",
@@ -305,21 +323,25 @@ public interface compiConstants {
     "\"class\"",
     "\"object\"",
     "\"interface\"",
+    "\"next\"",
     "\"del\"",
+    "\"as\"",
     "\"global\"",
-    "<IO>",
+    "\"in\"",
     "\"return\"",
     "\"then\"",
+    "\"array\"",
     "\"continue\"",
     "\"try\"",
-    "\"catch\"",
+    "\"oops\"",
     "\"like\"",
+    "\"strand\"",
+    "\"File\"",
     "\"open\"",
     "\"readfile\"",
-    "\"readln\"",
-    "\"write\"",
-    "\"writeln\"",
-    "<IMPRIMIR>",
+    "<LEER_LINEA>",
+    "<ESCRIBIR>",
+    "\"display\"",
     "\"exec\"",
     "\"excep\"",
     "\"raise\"",
@@ -343,6 +365,7 @@ public interface compiConstants {
     "\"static\"",
     "\"value\"",
     "\"input\"",
+    "\"endfor\"",
     "\"event\"",
     "\"ref\"",
     "\"checked\"",
@@ -350,7 +373,7 @@ public interface compiConstants {
     "\"sync\"",
     "\"run\"",
     "\"pass\"",
-    "\"Start\"",
+    "<INSTRUCHILO>",
     "\"Remove\"",
     "\"Clear\"",
     "\"Reverse\"",
@@ -358,9 +381,9 @@ public interface compiConstants {
     "\"Max\"",
     "\"Min\"",
     "\"Sum\"",
-    "\"Stop\"",
-    "\"Pause\"",
-    "\"Sleep\"",
+    "\"classend\"",
+    "\"endif\"",
+    "\"last\"",
     "\"append\"",
     "\"extend\"",
     "\"insert\"",
@@ -374,6 +397,7 @@ public interface compiConstants {
     "\"void\"",
     "\"Tag\"",
     "\"Bottom\"",
+    "\"instance\"",
     "\"count\"",
     "\"sort\"",
     "\"time\"",

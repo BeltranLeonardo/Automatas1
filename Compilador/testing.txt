@@ -1,0 +1,79 @@
+import packg libreria;
+
+class: clase1
+
+  global let numero as 50;
+  strg nombre as "juan";
+  display(nombre);
+
+  input.write("ingresa cantidad", cantidad);
+  input.read;
+
+   if this: cantidad == 50 then
+   display("son iguales");
+   endif;
+ 
+  elsif this: cantidad < numero then
+    display("la cantidad es menor");
+  endif;
+
+   else then
+    display("la cantidad es mayor");
+   endif;
+
+   let x as 1;
+   
+   switch this -> x
+   
+    in case 0 then
+    Math.pow(x,2)
+    x+= 1;
+
+    in case 1 then
+    display(x);
+  
+    endcase;
+
+  classend;
+  
+  void: metodo
+   instance clase1 as new clase1[]
+   #< Esto es un comentario >#
+   cons let b as 100;
+   let a as 0;
+
+    func: obtener(a,b,c,d)
+    while this: a < b then
+     if this: a == 50 then
+     strand hilo Start;
+     endif;
+    last
+  
+    for this (let i, i<4, i++):
+     a = i;
+    endfor;
+
+    try next
+        open.File("archivo.txt")
+	readfile();
+    last try;
+
+    oops: display("error"); 
+     last oops;
+    
+   return a;
+
+  array arreglo as [
+   "leo", "juan" , 4
+  ]
+ 
+  lambda balon(a) => 20*a;
+
+   rept this: 
+     a+=10;
+   until a = 20 * 20;
+
+  last;
+
+
+
